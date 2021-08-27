@@ -29,6 +29,11 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    transform-style: preserve-3d;
+}
+
+.content{
+    padding: 2rem;
 }
 
 .card-container{
@@ -36,6 +41,7 @@ main{
     color: #fff;
     width: 440px;
     height: 650px;
+    transform-style: preserve-3d;
 }
 
 .card-face{
@@ -48,6 +54,9 @@ main{
     flex-direction: column;
     justify-content: space-between;
     padding: 2.5rem 3rem;
+    backface-visibility: hidden;
+    transition: 0.8s;
+    transform-style: preserve-3d;
 }
 
 .face-1{
@@ -56,10 +65,34 @@ main{
         rgba(255,255,255,0.15),
         rgba(255,255,255,0.05)
     );
+    transform-origin: right;
+    transform: translate(0%) perspective(0px) rotateY(0deg);
 }
+
+.face-2{
+    background-image: linear-gradient(
+        60deg,
+        rgba(255,255,255,0.15),
+        rgba(255,255,255,0.05)
+    );
+    transform-origin: left;
+    transform: translate(100%) perspective(1000px) rotateY(100deg);
+}
+
+.content:hover .face-1{
+    transform: translate(-100%) perspective(1000px) rotateY(-100deg);
+}
+
+
+.content:hover .face-2{
+    transform: translate(0%) perspective(0px) rotateY(0deg);
+}
+
 
 .logo{
     width: 50px;
+    transform: translateZ(40px);
+    transform-style: preserve-3d;
 }
 
 .face-1 .top-part > h2{
@@ -68,6 +101,8 @@ main{
     font-family: "Roboto Condensed", sans-serif;
     letter-spacing: 2px;
     margin: 0.4rem 0 0.6rem;
+    transform: translateZ(50px);
+    transform-style: preserve-3d;
 }
 
 .shoe-info{
@@ -84,11 +119,15 @@ main{
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 1px;
+    transform: translateZ(40px);
+    transform-style: preserve-3d;
 }
 
 .shoe-year {
     color: #eee;
     font-size: 1.05rem;
+    transform: translateZ(40px);
+    transform-style: preserve-3d;
 }
 
 .shoe-price{
@@ -97,6 +136,8 @@ main{
     font-family: "Roboto Condensed", sans-serif;
     line-height: 0.95;
     display: flex;
+    transform: translateZ(45px);
+    transform-style: preserve-3d;
 }
 
 .shoe-price span {
@@ -113,6 +154,8 @@ main{
 .right-arrow{
     width: 35px;
     padding-top: 0.3rem;
+    transform: translateZ(45px);
+    transform-style: preserve-3d;
 }
 
 .right-arrow img{
@@ -129,13 +172,7 @@ main{
     }
 }
 
-.face-2{
-    background-image: linear-gradient(
-        60deg,
-        rgba(255,255,255,0.15),
-        rgba(255,255,255,0.05)
-    );
-}
+
 
 .header{
     display:flex;
@@ -146,6 +183,8 @@ main{
 .wish{
     color: #fff;
     font-size: 1.4rem;
+    transform: translateZ(30px);
+    transform-style: preserve-3d;
 }
 
 .features{
@@ -153,6 +192,8 @@ main{
     margin: 3rem 0;
     color: #eee;
     font-weight: 300;
+    transform: translateZ(40px);
+    transform-style: preserve-3d;
 }
 
 
@@ -162,6 +203,8 @@ main{
     font-size: 1.3rem;
     font-family: "Roboto Condensed", sans-serif;
     margin-top: 0.5rem;
+    transform: translateZ(35px);
+    transform-style: preserve-3d;
 }
 
 .features li{
@@ -171,6 +214,8 @@ main{
 .color-wrap{
     display: flex;
     align-items: center;
+    transform: translateZ(40px);
+    transform-style: preserve-3d;
 }
 
 .color-wrap > span{
@@ -179,17 +224,140 @@ main{
     margin-right: 1.3rem;
 }
 
+.colors{
+    display:flex;
+    align-items: center;
+}
+
 .color{
     display: inline-block;
     width: 27px;
     height:27px;
     border-radius: 50%;
-    background-color: red;
     margin-right: 0.6rem;
     cursor: pointer;
+    transition: .3s;
 }
 
-.face-1{
-    display: none;
+.color.blue{
+    background-color: #2980b9;
+    border: 4.5px solid #2980b9;
 }
 
+.color.black{
+    background-color: #333;
+    border: 4.5px solid #333;
+}
+.color.white{
+    background-color: #ccc;
+    border: 4.5px solid #ccc;
+}
+
+.color.active{
+    border: 4.5px solid #fff;
+}
+
+.color:hover{
+    transform: scale(1.1);
+}
+
+.buy-wrap{
+    display:flex;
+    justify-content: flex-end;
+
+}
+
+.buy{
+    display: inline-block;
+    padding: 0.5rem 1.7rem;
+    background-color: #2980b9;
+    border-radius: 4px;
+    color: #fff;
+    transition: background-color 0.3s, opacity 0.7s !important;
+    transform: translateZ(45px);
+    transform-style: preserve-3d;
+
+}
+
+.buy i {
+    font-size: 0.9rem;
+}
+
+.buy:hover{
+    background-color: #2d83bd;
+}
+
+
+.face-1 .hide{
+    opacity:1;
+    transition:0.7s;
+}
+
+
+.face-2 .hide{
+    opacity:0;
+    transition:0.7s;
+}
+
+.content:hover .face-1 .hide{
+    opacity: 0;
+}
+
+.content:hover .face-2 .hide{
+    opacity: 1;
+}
+
+.shoe-image-wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    transform-style: preserve-3d;
+    pointer-events: none;
+
+}
+
+.shoe-img{
+    position: absolute;
+    width:115%;
+    top: 50%;
+    left: 43%;
+    transform: translate(-45%, -55%) translateZ(200px);
+    transform-style: preserve-3d;
+    filter: drop-shadow(0px 0px 30px rgba(0,0,0,0.2));
+    animation: float 2s alternate ease-in-out infinite;
+    transition: 0.65s;
+}
+
+@keyframes float{
+    0%{
+        transform: translateX(calc(-45% - 5)) translateY(calc(-55% - 5px)) translateZ(200px);
+    }
+
+    100%{
+        transform: translateX(calc(-45% + 5px)) translateY(calc(-55% + 5px)) translateZ(400px);
+    }
+}
+
+
+.shoe{
+    transform: rotate(-30deg);
+    transition: 0.6s;
+}
+
+.content:hover .shoe-img{
+    width: 115%;
+    top: 67%;
+}
+
+.content:hover .shoe{
+    transform: rotate(-17deg);
+}
+
+@media (max-width: 550px){
+    .content{
+        transform: scale(0.63);
+    }
+}
