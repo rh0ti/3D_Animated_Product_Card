@@ -90,7 +90,7 @@ main{
 
 
 .logo{
-    width: 50px;
+    width: 58px;
     transform: translateZ(40px);
     transform-style: preserve-3d;
 }
@@ -171,9 +171,6 @@ main{
         transform: translateX(5px);
     }
 }
-
-
-
 .header{
     display:flex;
     justify-content: space-between;
